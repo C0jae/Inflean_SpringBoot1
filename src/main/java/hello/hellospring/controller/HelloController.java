@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HelloController {
@@ -23,5 +24,33 @@ public class HelloController {
         model.addAttribute("name", name);
 
         return "hello-template";
+    }
+
+    @GetMapping("hello-string")
+    @ResponseBody
+    // @ResponseBody : html이 아닌 http body부분에 데이터를 직접 넣어준다., html 파일을 거치지 않는다.(return 부분만 그대로 출력)
+    public String helloString(@RequestParam("name") String name) {
+        return "hello" + name;
+    }
+
+    @GetMapping("hello-api")
+    @ResponseBody
+    public Hello helloApi(@RequestParam("name") String name) {
+        Hello hello = new Hello();
+        hello.setName(name);
+
+        return hello;
+    }
+
+    static class Hello {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }
