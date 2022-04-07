@@ -63,3 +63,47 @@ public class HelloController {
 ```
 * 화면출력 : hello spring
   * 참고 : 컨트롤러를 거치지 않고 hello-template.html의 주소 그대로 접속하게되면 hello! empty가 출력된다.(thymeleaf 기능)
+***
+### API - 22.04.07.
+``` java
+    @GetMapping("hello-string")
+    @ResponseBody
+    public String helloString(@RequestParam("name") String name) {
+        return "hello" + name;
+    }
+```
+* @RequestBody : html이 아닌 http body부분에 데이터를 직접 넣어준다.
+    * html파일을 거치지 않는다.(return 부분 그대로 출력) => view를 거치지 않는다.
+* 화면 출력 : localhost:8080/hello-String?name=spring => hello spring   
+
+Json방식 출력
+``` java
+    @GetMapping("hello-api")
+    @ResponseBody
+    public Hello helloApi(@RequestParam("name") String name) {
+        Hello hello = new Hello();
+        hello.setName(name);
+
+        return hello;
+    }
+
+    static class Hello {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+```
+* hello-string의 경우 데이터 그대로 리턴하여 화면에 출력해주면 되지만 해당 메소드의 경우는 객체가 존재하기 때문에 Json타입으로 변환하여 http에 반환하게 된다.
+* 화면 출력 : localhost:8080/hello-String?name=spring => {"name" : "spring"}   
+
+@ResponseBody 원리
+* http의 body에 문자 내용을 직접 반환
+* 'viewResolver' 대신에 'HttpMessageConverter'가 동작
+* 기본 문자처리 : 'StringHttpMessageConverter'
+* 기본 객체처리 : 'MappingJackson2HttpMessageConverter'
