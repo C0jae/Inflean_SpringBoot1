@@ -29,9 +29,8 @@ public class HelloController {
     @GetMapping("hello-string")
     @ResponseBody
     // @ResponseBody : html이 아닌 http body부분에 데이터를 직접 넣어준다., html 파일을 거치지 않는다.(return 부분만 그대로 출력)
-    public String helloString(@RequestParam("name") String name) {
-        return "hello" + name;
-    }
+    // => json방식으로의 출력을 default로 정한다.
+    public String helloString(@RequestParam("name") String name) { return "hello" + name; }
 
     @GetMapping("hello-api")
     @ResponseBody
@@ -40,6 +39,7 @@ public class HelloController {
         hello.setName(name);
 
         return hello;
+        // json방식 => 출력 : {"name" : name} = key : value
     }
 
     static class Hello {
@@ -48,7 +48,6 @@ public class HelloController {
         public String getName() {
             return name;
         }
-
         public void setName(String name) {
             this.name = name;
         }
