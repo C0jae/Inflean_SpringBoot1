@@ -107,3 +107,7 @@ Json방식 출력
 * 'viewResolver' 대신에 'HttpMessageConverter'가 동작
 * 기본 문자처리 : 'StringHttpMessageConverter'
 * 기본 객체처리 : 'MappingJackson2HttpMessageConverter'
+
+***
+
+###
