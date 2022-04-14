@@ -120,3 +120,4 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 ```
+* DI를 통해 서로 강하게 결합되어 있는 두 클래스를 분리하고 두 객체간의 관계를 정리해줌으로써 결합도를 낮추고 유연성을 확보하게 된다.
