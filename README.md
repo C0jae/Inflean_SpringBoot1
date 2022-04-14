@@ -110,4 +110,13 @@ Json방식 출력
 
 ***
 
-###
+### 의존성 주입(Dependency Injection, DI) - 22.04.15.
+``` java
+public class MemberService {
+    private final MemberRepository memberRepository;
+
+    // DI(Dependency Injection : 의존성 주입(MemberRepository를 외부에서 주입한다.)
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+```
