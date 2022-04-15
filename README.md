@@ -121,3 +121,38 @@ public class MemberService {
     }
 ```
 * DI를 통해 서로 강하게 결합되어 있는 두 클래스를 분리하고 두 객체간의 관계를 정리해줌으로써 결합도를 낮추고 유연성을 확보하게 된다.
+
+***
+
+### 컴포넌트 스캔과 자동 의존관계 설정 - 22.04.15.
+``` java
+@Controller
+public class MemberController {
+
+    private final MemberService memberService;
+
+    // 생성자
+    @Autowired // @Autowired : 만들어진 생성자를 스프링 컨테이너와 연결을 시켜준다.
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+}
+```
+* new를 통해 매번 새로운 객체를 만드는 것이 아닌 생성자 생성과 @Autowired를 통해 스프링 컨테이너와 연결을 시켜준다. -> 스프링빈 등록
+* 참고 : 스프링은 스프링 컨테이너에 스프링 빈을 등록할 때, 기본으로 싱글톤으로 등록한다.(유일하게 하나만 등록해서 공유)
+* 즉, 같은 스프링 빈이면 모두 같은 인스턴스이다.
+* 설정으로 싱글톤이 아니게 설정할 수 있지만, 특별한 경우를 제외하면 대부분 싱글톤을 사용한다.
+``` java
+package hello.hellospring.service;
+
+@Service
+public class MemberService { 
+}
+```
+* @Service : 스프링이 해당 서비스클래스를 인식하여 스프링 컨테이너에 연결시켜준다.(DI, 의존관계 주입)
+* 레퍼지토리 클래스의 경우도 @Repository 어노테이션을 이용하여 연결(@~ : 컴포넌트 스캔방식)
+
+구조
+* Controller : 외부에서 요청(데이터) 받기
+* Service : 비즈니스 로직 만들기
+* Repository : 데이터 저장
