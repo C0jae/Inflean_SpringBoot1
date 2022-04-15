@@ -19,7 +19,7 @@ class MemberServiceTest {
     @BeforeEach
     public void beforEach() {
         memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
+        memberService = new MemberService(memberRepository);    // MemberTest에서 만들어준 MemberService를 가져온다.(DI)
     }
 
     // 테스트 데이터 초기화 : 하나의 테스트가 끝날때마다 실행된다.
@@ -42,6 +42,7 @@ class MemberServiceTest {
         Assertions.assertThat(member.getName()).isEqualTo(findMember.getName());
     }
 
+    // 테스트는 정상작동 확인보다 예외작동 확인이 더 중요하다.
     @Test
     public void 중복_회원_예외() {
         Member member1 = new Member();

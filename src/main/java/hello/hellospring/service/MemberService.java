@@ -3,15 +3,19 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-// cmd + shift + t : Test클래스 만들기
-public class MemberService {
+@Service // @Service : 스프링이 해당 서비스를 인식하여 스프링컨테이너에 등록시켜준다.
+public class MemberService {    // cmd + shift + t : Test클래스 만들기
     private final MemberRepository memberRepository;
 
+    // MemberRepository를 new 로 생성하는것이 아닌 외부에서 주입시킨다. -> testService에서 new로 하나 더 생성하는것을 방지
     // DI(Dependency Injection : 의존성 주입(MemberRepository를 외부에서 주입한다.)
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
