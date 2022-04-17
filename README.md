@@ -156,3 +156,7 @@ public class MemberService {
 * Controller : 외부에서 요청(데이터) 받기
 * Service : 비즈니스 로직 만들기
 * Repository : 데이터 저장
+
+***
+
+### 
