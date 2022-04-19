@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service // @Service : 스프링이 해당 서비스를 인식하여 스프링컨테이너에 등록시켜준다.
+//@Service // @Service : 스프링이 해당 서비스를 인식하여 스프링컨테이너에 등록시켜준다.
 public class MemberService {    // cmd + shift + t : Test클래스 만들기
     private final MemberRepository memberRepository;
 

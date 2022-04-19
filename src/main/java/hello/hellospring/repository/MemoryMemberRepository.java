@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 // MemberRepository의 구현체
-@Repository // 해당 레퍼지토리 클래스를 스프링이 인식하여 스프링 컨테이너와 연결시켜준다.
+//@Repository // 해당 레퍼지토리 클래스를 스프링이 인식하여 스프링 컨테이너와 연결시켜준다.
 public class MemoryMemberRepository implements MemberRepository {   // option + enter를 통해 모든 구현체 적용 가능
 
     private static Map<Long, Member> store = new HashMap<>();
